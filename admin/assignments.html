@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syllabus Evaluations - Faculty Desk</title>
+    
+    <!-- Bootstrap 5.3.2 CSS CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- Custom CSS Stylesheets -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+
+    <!-- Faculty Session Guard Layer -->
+    <script>
+        (function() {
+            const token = localStorage.getItem('token');
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            
+            /*if (!token || user.role !== 'admin') {
+                alert('Access Denied: Faculty Clearance Required.');
+                window.location.href = '../login.html';
+            }*/
+        })();
+    </script>
+</head>
+<body class="bg-light">
+
+    <!-- Top Faculty Navigation Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="admin-dashboard.html">
+                <span class="fw-bold tracking-wide">AcademiaX</span>
+                <span class="badge bg-danger ms-2 Regal-tag small" style="font-size: 0.65rem;">EVALUATIONS</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#assignmentsNav" aria-controls="assignmentsNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="assignmentsNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link" href="admin-dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="courses.html">My Courses</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="assignments.html">Submissions</a></li>
+                </ul>
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center text-white" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="avatar bg-danger text-white rounded-circle d-inline-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px; font-weight: 600; font-size: 0.85rem;" id="facInitials">JD</div>
+                            <span class="d-none d-sm-inline" id="facNameLabel">Professor Name</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" aria-labelledby="profileDropdown">
+                            <li><a class="dropdown-item py-2 small text-danger" href="#" id="logoutBtn"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i> Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Workspace Container -->
+    <main class="container py-5">
+        
+        <!-- Header Content Row -->
+        <div class="mb-4">
+            <h2 class="fw-bold mb-1 text-dark">Student Deliverables Evaluation Queue</h2>
+            <p class="text-muted mb-0">Review incoming sandbox deployments, parse link submissions, and record weighted scoring matrices.</p>
+        </div>
+
+        <!-- Pending Items Processing Queue Table Card -->
+        <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white">
+            <div class="p-3 bg-light border-bottom">
+                <span class="text-muted small font-monospace text-uppercase fw-bold">Active Ungraded Link Buffer Queue</span>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0 text-nowrap">
+                    <thead class="table-light text-uppercase font-monospace small" style="font-size:0.75rem;">
+                        <tr>
+                            <th class="ps-4 py-3">Course</th>
+                            <th class="py-3">Milestone Task Name</th>
+                            <th class="py-3">Student Name</th>
+                            <th class="py-3">Submitted Link Asset</th>
+                            <th class="py-3 text-end pe-4">Grading Assessment</th>
+                        </tr>
+                    </thead>
+                    <tbody class="small" id="evaluationsTableBody">
+                        
+                        <!-- Row Record 1 -->
+                        <tr class="eval-row">
+                            <td class="ps-4 font-monospace fw-bold text-primary">FS202</td>
+                            <td><div class="fw-bold text-dark">Milestone 03: Async REST Architecture</div></td>
+                            <td>John Doe</td>
+                            <td>
+                                <a href="https://github.com/example/async-rest" target="_blank" class="text-decoration-none fw-medium text-danger">
+                                    <i class="fa-brands fa-github me-1"></i> View Repository <i class="fa-solid fa-arrow-up-right-from-square ms-1" style="font-size:0.65rem;"></i>
+                                </a>
+                            </td>
+                            <td class="text-end pe-4">
+                                <form class="d-inline-flex gap-2 align-items-center justify-content-end grading-form" style="max-width: 260px; float: right;">
+                                    <div class="input-group input-group-sm" style="width: 110px;">
+                                        <input type="number" min="0" max="150" class="form-control text-center score-input" placeholder="Score" required style="border-radius: 6px 0 0 6px;">
+                                        <span class="input-group-text bg-light text-muted small" style="border-radius: 0 6px 6px 0;">/150</span>
+                                    </div>
+                                    <button type="submit" class="btn btn-sm btn-danger px-3 rounded-2 fw-medium">Commit</button>
+                                </form>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 border-top border-secondary mt-5">
+        <div class="container text-center">
+            <p class="text-muted small mb-0">&copy; 2026 AcademiaX Faculty Portal Core. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 Bundle JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Session Integration & Submission Grading Handling Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            if (user.username) {
+                document.getElementById('facNameLabel').innerText = user.username;
+                const initials = user.username.split(' ').map(n => n[0]).join('').toUpperCase();
+                document.getElementById('facInitials').innerText = initials || 'PR';
+            }
+
+            // Handle individual score submission submission updates
+            document.querySelectorAll('.grading-form').forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const enteredScore = this.querySelector('.score-input').value;
+                    alert(`Score of ${enteredScore} points logged. Score saved to student record data arrays.`);
+                    this.closest('.eval-row').remove(); // Clear row from visual active queue block
+                    
+                    if(document.querySelectorAll('.eval-row').length === 0) {
+                        document.getElementById('evaluationsTableBody').innerHTML = `<tr><td colspan="5" class="text-center py-4 text-muted">Evaluation queue cleared. All deliverables graded!</td></tr>`;
+                    }
+                });
+            });
+        });
+
+        document.getElementById('logoutBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.clear();
+            window.location.href = '../index.html';
+        });
+    </script>
+</body>
+</html>

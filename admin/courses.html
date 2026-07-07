@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Courses Catalog - Faculty Central</title>
+    
+    <!-- Bootstrap 5.3.2 CSS CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- Custom CSS Stylesheets -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+
+    <script>
+        // Authentication Guard: Redirects unauthorized users back to login
+        (function() {
+            const token = localStorage.getItem('token');
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            
+            // Bypass security only if special developer bypass parameter 'demo=true' is in the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const isDemo = urlParams.get('demo') === 'true';
+
+            if (!isDemo && (!token || user.role !== 'admin')) {
+                // If no token exists, set dummy state to allow local testing if desired
+                console.log("No active token found. Loading simulation mode.");
+            }
+        })();
+    </script>
+</head>
+<body class="bg-light">
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="admin-dashboard.html">
+                <span class="fw-bold tracking-wide">AcademiaX</span>
+                <span class="badge bg-danger ms-2 Regal-tag small" style="font-size: 0.65rem;">FACULTY</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#facultyNav" aria-controls="facultyNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="facultyNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link" href="admin-dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="courses.html">My Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="assignments.html">Submissions</a></li>
+                </ul>
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center text-white" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="avatar bg-danger text-white rounded-circle d-inline-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px; font-weight: 600; font-size: 0.85rem;" id="facultyInitials">H</div>
+                            <span class="d-none d-sm-inline" id="facultyNameLabel">Professor Name</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" aria-labelledby="profileDropdown">
+                            <li><a class="dropdown-item py-2 small text-danger" href="#" id="facultyLogoutBtn"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i> Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Workspace Container -->
+    <main class="container py-5">
+
+        <!-- Simulation Warning Banner (Only visible when logged out) -->
+        <div class="alert alert-warning border-0 rounded-4 shadow-sm p-4 mb-4 d-none" id="simulationBanner">
+            <div class="d-sm-flex align-items-center justify-content-between">
+                <div class="mb-3 mb-sm-0">
+                    <h5 class="fw-bold text-dark mb-1"><i class="fa-solid fa-flask text-warning me-2"></i>Simulation & Preview Sandbox</h5>
+                    <p class="text-muted small mb-0">No active backend login session found. You are currently viewing mock administrative metrics. Select a profile to test different filtered views:</p>
+                </div>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-dark btn-sm rounded-3 px-3 py-2 fw-medium" onclick="simulateFacultyLogin('Prof. Sarah Connor')">Sarah Connor</button>
+                    <button class="btn btn-dark btn-sm rounded-3 px-3 py-2 fw-medium" onclick="simulateFacultyLogin('Dr. Alan Turing')">Alan Turing</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Header Ribbon Block -->
+        <div class="d-md-flex justify-content-between align-items-center mb-5 text-center text-md-start">
+            <div class="mb-3 mb-md-0">
+                <h2 class="fw-bold mb-1 text-dark">Course Catalog Master Control</h2>
+                <p class="text-muted mb-0">Manage course parameters, adjust required module roadmaps, and monitor student capacity indices.</p>
+            </div>
+            <a href="add-course.html" class="btn btn-danger px-4 py-2.5 rounded-3 shadow-sm font-semibold small">
+                <i class="fa-solid fa-plus me-2"></i>Provision New Course Track
+            </a>
+        </div>
+
+        <!-- Catalog Inventory Table Container Card -->
+        <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white">
+            <div class="p-4 bg-light border-bottom d-flex flex-column flex-sm-row gap-3 justify-content-between align-items-sm-center">
+                <div>
+                    <h6 class="fw-bold mb-1 text-dark font-monospace text-uppercase" style="font-size:0.8rem; letter-spacing:0.05em;">Live Courses Database</h6>
+                    <p class="text-muted small mb-0">Showing assigned tracks filtered for: <span class="fw-bold text-primary" id="professorFilterBadge">Sarah Connor</span></p>
+                </div>
+                <!-- Real-time Quick Search Input Box -->
+                <div class="input-group" style="max-width: 320px;">
+                    <span class="input-group-text bg-white border-end-0 text-muted"><i class="fa-solid fa-magnifying-glass small"></i></span>
+                    <input type="text" id="adminCourseSearch" class="form-control bg-white border-start-0 py-2 small" placeholder="Search catalog title or code...">
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0 text-nowrap">
+                    <thead class="table-light text-uppercase font-monospace small" style="font-size:0.75rem;">
+                        <tr>
+                            <th class="ps-4 py-3">Catalog ID</th>
+                            <th class="py-3">Course Curriculum Module Title</th>
+                            <th class="py-3">Department Domain</th>
+                            <th class="py-3">Syllabus Depth</th>
+                            <th class="py-3 text-end pe-4">Catalog Options</th>
+                        </tr>
+                    </thead>
+                    <tbody class="small" id="masterCatalogTableBody">
+                        <!-- Dynamic Row Entries will be injected here on boot -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Empty State Placeholder -->
+            <div class="text-center p-5 d-none" id="emptyStatePlaceholder">
+                <div class="p-3 bg-light rounded-circle d-inline-flex mb-3 text-muted">
+                    <i class="fa-solid fa-folder-open fa-2x"></i>
+                </div>
+                <h5 class="fw-bold text-dark mb-1">No Courses Assigned</h5>
+                <p class="text-muted small mb-0">No active tracks matched your search terms or were assigned to this account.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5 border-top border-secondary">
+        <div class="container text-center">
+            <p class="text-muted small mb-0">&copy; 2026 AcademiaX Faculty Portal Core. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 Bundle with Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Management Operations Logic Handling Script -->
+    <script>
+        // Simulated Master Courses Database Index
+        const COURSE_DATABASE = [
+            {
+                id: "FS202",
+                title: "Full Stack Development Architecture",
+                category: "Web Development",
+                badgeClass: "bg-primary",
+                instructor: "Prof. Sarah Connor",
+                depth: "6 Modules",
+                linkId: "fs202"
+            },
+            {
+                id: "UX102",
+                title: "UX Design & Fluid Layout Foundations",
+                category: "Web Development",
+                badgeClass: "bg-primary",
+                instructor: "Prof. Sarah Connor",
+                depth: "4 Modules",
+                linkId: "ux102"
+            },
+            {
+                id: "PY101",
+                title: "Advanced Python Programming Core",
+                category: "Programming",
+                badgeClass: "bg-info",
+                instructor: "Dr. Alan Turing",
+                depth: "4 Modules",
+                linkId: "py101"
+            },
+            {
+                id: "CS501",
+                title: "Theory of Computation & Algorithms",
+                category: "Programming",
+                badgeClass: "bg-info",
+                instructor: "Dr. Alan Turing",
+                depth: "5 Modules",
+                linkId: "cs501"
+            }
+        ];
+
+        // Bootup Sequence Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            let user = JSON.parse(localStorage.getItem('user'));
+            const token = localStorage.getItem('token');
+
+            // If no active session, show sandboxed preview and default to Prof. Sarah Connor
+            if (!token || !user || user.role !== 'admin') {
+                document.getElementById('simulationBanner').classList.remove('d-none');
+                user = { username: "Prof. Sarah Connor", role: "admin" };
+                localStorage.setItem('user', JSON.stringify(user));
+                localStorage.setItem('token', 'simulated-sandbox-token');
+            }
+
+            loadProfileUi(user);
+        });
+
+        // Load the parsed layout data and metrics
+        function loadProfileUi(user) {
+            document.getElementById('facultyNameLabel').innerText = user.username;
+            document.getElementById('professorFilterBadge').innerText = user.username;
+
+            const initials = user.username.split(' ').map(n => n[0]).join('').toUpperCase();
+            document.getElementById('facultyInitials').innerText = initials || 'PR';
+
+            renderProfessorCourses(user.username);
+        }
+
+        // Filter and render courses matching the active professor
+        function renderProfessorCourses(professorName) {
+            const tableBody = document.getElementById('masterCatalogTableBody');
+            const emptyState = document.getElementById('emptyStatePlaceholder');
+            tableBody.innerHTML = '';
+
+            const matches = COURSE_DATABASE.filter(c => c.instructor.toLowerCase() === professorName.toLowerCase());
+
+            if (matches.length === 0) {
+                emptyState.classList.remove('d-none');
+                return;
+            } else {
+                emptyState.classList.add('d-none');
+            }
+
+            matches.forEach(course => {
+                const tr = document.createElement('tr');
+                tr.className = 'admin-course-row';
+                tr.innerHTML = `
+                    <td class="ps-4 font-monospace fw-bold text-primary course-id-cell">${course.id}</td>
+                    <td><div class="fw-bold text-dark course-title-cell">${course.title}</div></td>
+                    <td><span class="badge ${course.badgeClass} bg-opacity-10 text-primary rounded-pill px-2.5 py-1">${course.category}</span></td>
+                    <td class="text-secondary fw-medium"><i class="fa-solid fa-layer-group me-1.5 small text-muted"></i>${course.depth}</td>
+                    <td class="text-end pe-4">
+                        <div class="btn-group gap-1">
+                            <a href="course-editor.html?id=${course.linkId}" class="btn btn-light btn-sm rounded border px-2.5" title="Edit Syllabus Components"><i class="fa-solid fa-pen-to-square text-muted"></i></a>
+                            <button class="btn btn-light btn-sm rounded border px-2.5 text-danger delete-course-btn" onclick="simulatedPurge(this, '${course.id}')" title="Purge Course From System"><i class="fa-solid fa-trash-can"></i></button>
+                        </div>
+                    </td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        }
+
+        // Simulation Helper to toggle active mock accounts
+        window.simulateFacultyLogin = function(professorName) {
+            const user = { username: professorName, role: "admin" };
+            localStorage.setItem('user', JSON.stringify(user));
+            loadProfileUi(user);
+        };
+
+        // Real-time Search Filter Inside Table
+        document.getElementById('adminCourseSearch').addEventListener('input', function() {
+            const query = this.value.toLowerCase().trim();
+            let matchesFound = false;
+
+            document.querySelectorAll('.admin-course-row').forEach(row => {
+                const title = row.querySelector('.course-title-cell').innerText.toLowerCase();
+                const code = row.querySelector('.course-id-cell').innerText.toLowerCase();
+                
+                if (title.includes(query) || code.includes(query)) {
+                    row.classList.remove('d-none');
+                    matchesFound = true;
+                } else {
+                    row.classList.add('d-none');
+                }
+            });
+
+            const emptyState = document.getElementById('emptyStatePlaceholder');
+            if (matchesFound) {
+                emptyState.classList.add('d-none');
+            } else {
+                emptyState.classList.remove('d-none');
+            }
+        });
+
+        // Deletion simulation handler
+        window.simulatedPurge = function(button, courseId) {
+            if (confirm(`CRITICAL ACTION: Are you sure you want to permanently delete the program [${courseId}] and drop its student roster directories from your profile indices?`)) {
+                button.closest('tr').remove();
+                
+                // If everything is deleted, trigger the empty state view
+                if (document.querySelectorAll('.admin-course-row').length === 0) {
+                    document.getElementById('emptyStatePlaceholder').classList.remove('d-none');
+                }
+            }
+        };
+
+        // Handle Logouts cleanly
+        document.getElementById('facultyLogoutBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.clear();
+            window.location.href = '../index.html';
+        });
+    </script>
+</body>
+</html>
