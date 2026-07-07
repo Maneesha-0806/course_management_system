@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration - AcademiaX</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body class="bg-light d-flex align-items-center min-vh-100 py-5">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8 col-xl-6">
+                
+                <div class="mb-3">
+                    <a href="../index.html" class="text-decoration-none text-muted small">
+                        <i class="fa-solid fa-arrow-left me-1"></i> Back to Homepage
+                    </a>
+                </div>
+
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                    <div class="card-body p-4 p-sm-5 bg-white">
+                        
+                        <div class="text-center mb-4">
+                            <h2 class="fw-bold mb-1">Create Account</h2>
+                            <p class="text-muted">Join AcademiaX to register and track your institutional courses.</p>
+                        </div>
+
+                        <div id="authAlert" class="alert d-none" role="alert"></div>
+
+                        <form id="studentRegisterForm" novalidate>
+                            
+                            <div class="mb-3">
+                                <label for="studentName" class="form-label small fw-semibold">Full Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-end-0 text-muted">
+                                        <i class="fa-solid fa-user"></i>
+                                    </span>
+                                    <input type="text" id="studentName" class="form-control bg-light border-start-0" placeholder="Nanashi no Gombe" required minlength="3">
+                                    <div class="invalid-feedback">Please enter your full name (minimum 3 characters).</div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="studentEmail" class="form-label small fw-semibold">Academic Email Address</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-end-0 text-muted">
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </span>
+                                    <input type="email" id="studentEmail" class="form-control bg-light border-start-0" placeholder="student@university.edu" required>
+                                    <div class="invalid-feedback">Please enter a valid academic email address.</div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="studentDepartment" class="form-label small fw-semibold">Academic Department</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-end-0 text-muted">
+                                        <i class="fa-solid fa-building-user"></i>
+                                    </span>
+                                    <select id="studentDepartment" class="form-select bg-light border-start-0" required>
+                                        <option value="" selected disabled>Select your department...</option>
+                                        <option value="Computer Science">Computer Science & Engineering</option>
+                                        <option value="Artificial Intelligence">Artificial Intelligence & Data Science</option>
+                                        <option value="Information Technology">Information Technology</option>
+                                        <option value="Software Engineering">Software Engineering</option>
+                                    </select>
+                                    <div class="invalid-feedback">Please choose your respective academic department.</div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="studentPassword" class="form-label small fw-semibold">Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-end-0 text-muted">
+                                        <i class="fa-solid fa-lock"></i>
+                                    </span>
+                                    <input type="password" id="studentPassword" class="form-control bg-light border-start-0" placeholder="Create a strong password" required minlength="6">
+                                    <button class="btn btn-light border border-start-0 text-muted" type="button" id="togglePassword">
+                                        <i class="fa-solid fa-eye" id="passwordIcon"></i>
+                                    </button>
+                                    <div class="invalid-feedback">Password must be at least 6 characters long.</div>
+                                </div>
+                            </div>
+
+                            <div class="mb-4 form-check">
+                                <input type="checkbox" class="form-check-input" id="termsCheck" required>
+                                <label class="form-check-label small text-muted user-select-none" for="termsCheck">I agree to the academic honor code and system terms</label>
+                                <div class="invalid-feedback">You must accept the terms to proceed.</div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100 py-2.5 fw-medium rounded-3 mb-3">
+                                <span class="spinner-border spinner-border-sm d-none me-2" role="status" aria-hidden="true" id="registerSpinner"></span>
+                                Register Account
+                            </button>
+
+                            <div class="text-center">
+                                <p class="text-muted small mb-0">
+                                    Already have an account? <a href="student-login.html" class="text-primary text-decoration-none fw-medium">Log In Here</a>
+                                </p>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="../js/auth.js"></script>
+    
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordField = document.getElementById('studentPassword');
+            const icon = document.getElementById('passwordIcon');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        });
+
+        const form = document.getElementById('studentRegisterForm');
+        form.addEventListener('submit', function(event) {
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+        });
+    </script>
+</body>
+</html>
