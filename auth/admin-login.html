@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal Login - AcademiaX</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body class="bg-light d-flex align-items-center min-vh-100">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8 col-xl-6">
+                
+                <div class="mb-3">
+                    <a href="../index.html" class="text-decoration-none text-muted small">
+                        <i class="fa-solid fa-arrow-left me-1"></i> Back to Homepage
+                    </a>
+                </div>
+
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden border-top border-dark border-4">
+                    <div class="card-body p-4 p-sm-5 bg-white">
+                        
+                        <div class="text-center mb-4">
+                            <div class="d-inline-flex p-3 bg-dark text-white rounded-circle mb-3 shadow-sm">
+                                <i class="fa-solid fa-user-shield fa-2x"></i>
+                            </div>
+                            <h2 class="fw-bold mb-1">Administrative Gateway</h2>
+                            <p class="text-muted">Sign in to update curriculum, view statistics, and review student progress reports.</p>
+                        </div>
+
+                        <div id="authAlert" class="alert d-none" role="alert"></div>
+
+                        <form id="adminLoginForm" novalidate>
+                            
+                            <div class="mb-3">
+                                <label for="adminEmail" class="form-label small fw-semibold">Administrative Email</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-end-0 text-muted">
+                                        <i class="fa-solid fa-shield-halved"></i>
+                                    </span>
+                                    <input type="email" id="adminEmail" class="form-control bg-light border-start-0" placeholder="admin@academiax.com" required>
+                                    <div class="invalid-feedback">Please enter an authorized admin email handle.</div>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <label for="adminPassword" class="form-label small fw-semibold mb-0">Security Token / Password</label>
+                                    <a href="forgot-password.html" class="text-decoration-none small text-dark fw-medium">Forgot Password?</a>
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-end-0 text-muted">
+                                        <i class="fa-solid fa-key"></i>
+                                    </span>
+                                    <input type="password" id="adminPassword" class="form-control bg-light border-start-0" placeholder="••••••••" required>
+                                    <button class="btn btn-light border border-start-0 text-muted" type="button" id="togglePassword">
+                                        <i class="fa-solid fa-eye" id="passwordIcon"></i>
+                                    </button>
+                                    <div class="invalid-feedback">Administrative token field cannot be empty.</div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-dark w-100 py-2.5 fw-medium rounded-3 mb-3 shadow-sm">
+                                <span class="spinner-border spinner-border-sm d-none me-2" role="status" aria-hidden="true" id="adminSpinner"></span>
+                                Secure Log In
+                            </button>
+
+                            <div class="text-center">
+                                <p class="text-muted small mb-0">
+                                    New Administrator? <a href="admin-register.html" class="text-dark text-decoration-none fw-bold">Create Admin Account</a>
+                                </p>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <p class="text-muted small">
+                        Not an Administrator? <a href="student-login.html" class="fw-semibold text-primary text-decoration-none"><i class="fa-solid fa-graduation-cap me-1"></i> Return to Student Portal</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="../js/auth.js"></script>
+    
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordField = document.getElementById('adminPassword');
+            const icon = document.getElementById('passwordIcon');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        });
+
+        const form = document.getElementById('adminLoginForm');
+        form.addEventListener('submit', function(event) {
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+        });
+    </script>
+</body>
+</html>
