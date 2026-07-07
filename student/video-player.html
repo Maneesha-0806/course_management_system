@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Video Player - AcademiaX</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/student.css">
+    <link rel="stylesheet" href="../css/learning.css">
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+        <div class="container-fluid px-lg-4">
+            <a class="navbar-brand d-flex align-items-center" href="student-dashboard.html">
+                <span class="fw-bold tracking-wide">AcademiaX</span>
+                <span class="badge bg-primary ms-2 Regal-tag small" style="font-size: 0.65rem;">VIDEO TERMINAL</span>
+            </a>
+            <div class="ms-auto">
+                <a href="course-content.html" class="btn btn-outline-light btn-sm rounded-2">
+                    <i class="fa-solid fa-arrow-left me-1.5 small"></i> Back to Course Workspace
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid py-4">
+        <div class="row g-4">
+            
+            <div class="col-12 col-xl-8">
+                
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-black mb-4 position-relative ratio ratio-16x9">
+                    <video id="lectureVideo" controls poster="../images/dashboard.jpg" class="w-100 h-100">
+                        <source src="https://assets.mixkit.co/videos/preview/mixkit-software-developer-working-on-code-screen-close-up-42244-large.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <div class="bg-white rounded-4 p-4 shadow-sm border-0 mb-4">
+                    <div class="d-md-flex justify-content-between align-items-start mb-3">
+                        <div>
+                            <span class="badge bg-info bg-opacity-10 text-info px-2.5 py-1 rounded-pill small fw-bold text-uppercase mb-2" style="font-size:0.65rem;">Lecture 3.2</span>
+                            <h3 class="fw-bold text-dark mb-1" id="videoLectureTitle">Understanding Promises & Callback Hells</h3>
+                            <p class="text-muted small mb-0">Course: <span class="fw-medium text-dark">Advanced Python & JS Engines</span> | Instructor: Dr. Alan Turing</p>
+                        </div>
+                        <button id="videoMarkDoneBtn" class="btn btn-outline-success rounded-3 small fw-medium mt-3 mt-md-0">
+                            <i class="fa-regular fa-circle-check me-2"></i>Mark Video as Watched
+                        </button>
+                    </div>
+                    
+                    <hr class="my-4 text-muted opacity-20">
+
+                    <div class="accordion accordion-flush" id="videoMetaAccordion">
+                        <div class="accordion-item bg-transparent">
+                            <h2 class="accordion-header" id="headingNotes">
+                                <button class="accordion-button collapsed fw-bold text-dark ps-0 bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNotes" aria-expanded="false" aria-controls="collapseNotes">
+                                    <i class="fa-solid fa-book-open text-primary me-2 small"></i> Lecture Overview & Summary Notes
+                                </button>
+                            </h2>
+                            <div id="collapseNotes" class="accordion-collapse collapse" aria-labelledby="headingNotes" data-bs-parent="#videoMetaAccordion">
+                                <div class="accordion-body px-0 text-muted small">
+                                    This video breaks down synchronous vs asynchronous code processing patterns. We explore how execution threads dump execution contexts on the stack stack frames, and handle web API callbacks using event loop queues.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-12 col-xl-4">
+                <div class="card border-0 shadow-sm rounded-4 p-4 bg-white sticky-xl-top" style="top: 85px;">
+                    <h5 class="fw-bold text-dark mb-3"><i class="fa-solid fa-list-ol text-primary me-2"></i>Module Video Playlist</h5>
+                    <p class="text-muted small mb-3">Module 03: Asynchronous Engines</p>
+                    
+                    <div class="list-group list-group-flush gap-2" id="playlistGroup">
+                        <a href="#" class="list-group-item list-group-item-action border rounded-3 p-3 d-flex align-items-center justify-content-between bg-light opacity-75">
+                            <div class="d-flex align-items-center">
+                                <i class="fa-solid fa-circle-check text-success fa-lg me-3"></i>
+                                <div>
+                                    <span class="fw-bold text-dark small d-block">1. Introduction to Event Loops</span>
+                                    <small class="text-muted">Duration: 15:20</small>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="list-group-item list-group-item-action border rounded-3 p-3 d-flex align-items-center justify-content-between active border-primary bg-primary bg-opacity-5">
+                            <div class="d-flex align-items-center">
+                                <i class="fa-solid fa-circle-play text-primary fa-lg me-3"></i>
+                                <div>
+                                    <span class="fw-bold text-dark small d-block">2. Promises & Callback Hells</span>
+                                    <small class="text-primary fw-medium">Playing Now</small>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="#" class="list-group-item list-group-item-action border rounded-3 p-3 d-flex align-items-center justify-content-between text-muted">
+                            <div class="d-flex align-items-center">
+                                <i class="fa-solid fa-circle-minus text-muted fa-lg me-3"></i>
+                                <div>
+                                    <span class="fw-bold text-muted small d-block">3. Mastering Async/Await Blocks</span>
+                                    <small class="text-muted">Duration: 22:10</small>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.getElementById('videoMarkDoneBtn').addEventListener('click', function() {
+            this.className = "btn btn-success rounded-3 disabled small";
+            this.innerHTML = '<i class="fa-solid fa-circle-check me-2"></i>Watched & Logged';
+        });
+    </script>
+</body>
+</html>
