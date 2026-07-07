@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AcademiaX - Course Management & Progress Tracking System</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <span class="fw-bold tracking-wide">AcademiaX</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#categories">Categories</a>
+                    </li>
+                    <li class="nav-item ms-lg-3 my-2 my-lg-0">
+                        <a class="btn btn-outline-light btn-sm px-3" href="./auth/student-login.html">Student Portal</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="btn btn-primary btn-sm px-3" href="./auth/admin-login.html">Admin Portal</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section text-white d-flex align-items-center bg-dark py-5" style="min-height: 60vh;">
+        <div class="container text-center text-lg-start my-5">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <h1 class="display-4 fw-bold text-white mb-3">Empower Your Learning Journey with AcademiaX</h1>
+                    <p class="lead mb-4 text-light">Track your progress, manage your courses, and upgrade your skills on a single, centralized full-stack learning platform.</p>
+                    <div class="d-sm-flex justify-content-center justify-content-lg-start gap-3">
+                        <a href="./auth/student-register.html" class="btn btn-primary btn-lg px-4 mb-3 mb-sm-0">Get Started Now</a>
+                        <a href="#features" class="btn btn-outline-light btn-lg px-4">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="features" class="py-5 bg-light">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <span class="text-primary fw-bold text-uppercase tracking-wider">Why Choose Us</span>
+                <h2 class="fw-bold mt-2">Comprehensive Learning Ecosystem</h2>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm p-4">
+                        <div class="icon-box bg-primary bg-opacity-10 text-primary rounded p-3 mb-3" style="width: fit-content;">
+                            <i class="fa-solid fa-graduation-cap fa-2x"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2">Smart Enrollment</h4>
+                        <p class="text-muted mb-0">Browse through targeted tech and academic tracks easily.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm p-4">
+                        <div class="icon-box bg-success bg-opacity-10 text-success rounded p-3 mb-3" style="width: fit-content;">
+                            <i class="fa-solid fa-chart-line fa-2x"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2">Progress Tracker</h4>
+                        <p class="text-muted mb-0">Check dynamic progress bars and track completed modules.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm p-4">
+                        <div class="icon-box bg-warning bg-opacity-10 text-warning rounded p-3 mb-3" style="width: fit-content;">
+                            <i class="fa-solid fa-bolt fa-2x"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2">Instant Alerts</h4>
+                        <p class="text-muted mb-0">Powered by Socket.IO. Receive immediate course notifications.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="categories" class="py-5 bg-white">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Explore Top Trending Categories</h2>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-6 col-md-3">
+                    <div class="text-center p-4 border rounded shadow-sm bg-light">
+                        <i class="fa-solid fa-code fa-3x text-primary mb-3"></i>
+                        <h5 class="fw-bold mb-0">Web Dev</h5>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="text-center p-4 border rounded shadow-sm bg-light">
+                        <i class="fa-solid fa-brain fa-3x text-info mb-3"></i>
+                        <h5 class="fw-bold mb-0">AI</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p class="text-muted small mb-0">&copy; 2026 AcademiaX Systems. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
