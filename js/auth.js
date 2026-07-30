@@ -204,13 +204,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     const forgotform = document.getElementById('forgotPasswordForm');
     if (forgotform) { 
-        const referrer = document.referrer;
+        // Grab the "?role=..." parameter from the web address
+        const urlParams = new URLSearchParams(window.location.search);
+        const userRole = urlParams.get('role');
+        
         const backLink = document.getElementById('backToLoginLink');
 
-        if (backLink && referrer.includes('admin-login.html')) {
-            backLink.href = 'admin-login.html';
-            backLink.innerHTML = '<i class="fa-solid fa-arrow-left me-1"></i> Return to Admin Portal';
-            backLink.className = 'text-dark text-decoration-none small fw-bold'; 
+        if (backLink) {
+            // If the URL says ?role=admin
+            if (userRole === 'admin') {
+                backLink.href = 'admin-login.html'; // Make sure this matches your actual file name!
+                backLink.innerHTML = '<i class="fa-solid fa-arrow-left me-1"></i> Return to Admin Portal';
+                backLink.className = 'text-dark text-decoration-none small fw-bold'; 
+            } 
+            // If the URL says ?role=student
+            else if (userRole === 'student') {
+                backLink.href = 'student-login.html';
+                backLink.innerHTML = '<i class="fa-solid fa-arrow-left me-1"></i> Return to Student Portal';
+                backLink.className = 'text-primary text-decoration-none small fw-bold'; 
+            }
         }
 
         forgotform.addEventListener('submit', function(event) {
