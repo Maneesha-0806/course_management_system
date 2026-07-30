@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Reference Materials - AcademiaX</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/student.css">
+    <link rel="stylesheet" href="../css/courses.css">
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="student-dashboard.html">
+                <span class="fw-bold tracking-wide">AcademiaX</span>
+                <span class="badge bg-primary ms-2 Regal-tag small" style="font-size: 0.65rem;">RESOURCES</span>
+            </a>
+            <div class="ms-auto">
+                <a href="course-content.html" class="btn btn-outline-light btn-sm rounded-2">
+                    <i class="fa-solid fa-arrow-left me-1.5 small"></i> Return to Classroom
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-5">
+        
+        <div class="mb-5 text-center text-md-start">
+            <h2 class="fw-bold mb-1">Module Resource Downloads</h2>
+            <p class="text-muted">Access reference documentation, code assets, and textbook files assigned to your current module track.</p>
+        </div>
+
+        <div class="row g-4">
+            
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm rounded-4 p-4 bg-white hover-card">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-danger bg-opacity-10 text-danger rounded-3 p-3 me-3">
+                            <i class="fa-solid fa-file-pdf fa-2x"></i>
+                        </div>
+                        <div>
+                            <span class="badge bg-secondary px-2 py-0.5 rounded-pill small" style="font-size:0.6rem;">DOCS</span>
+                            <h5 class="fw-bold text-dark mb-0 mt-1">Full-Stack Notes Blueprint</h5>
+                        </div>
+                    </div>
+                    <p class="text-muted small mb-4">Complete module notes covering asynchronous runtime engines, JavaScript event loops, and exception handshakes.</p>
+                    <div class="mt-auto d-flex align-items-center justify-content-between pt-3 border-top border-light">
+                        <small class="text-muted fw-medium">Size: 4.8 MB</small>
+                        <a href="#" class="btn btn-outline-primary btn-sm px-3 rounded-2 download-handler">
+                            <i class="fa-solid fa-download me-1.5 small"></i> Get PDF
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm rounded-4 p-4 bg-white hover-card">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-warning bg-opacity-10 text-warning rounded-3 p-3 me-3">
+                            <i class="fa-solid fa-file-zipper fa-2x"></i>
+                        </div>
+                        <div>
+                            <span class="badge bg-secondary px-2 py-0.5 rounded-pill small" style="font-size:0.6rem;">CODE</span>
+                            <h5 class="fw-bold text-dark mb-0 mt-1">Syllabus Demo Projects</h5>
+                        </div>
+                    </div>
+                    <p class="text-muted small mb-4">Starter template scripts, package layout schemes, and setup files to accompany the video assignments.</p>
+                    <div class="mt-auto d-flex align-items-center justify-content-between pt-3 border-top border-light">
+                        <small class="text-muted fw-medium">Size: 12.4 MB</small>
+                        <a href="#" class="btn btn-outline-primary btn-sm px-3 rounded-2 download-handler">
+                            <i class="fa-solid fa-download me-1.5 small"></i> Get ZIP Assets
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm rounded-4 p-4 bg-white hover-card">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-info bg-opacity-10 text-info rounded-3 p-3 me-3">
+                            <i class="fa-solid fa-file-lines fa-2x"></i>
+                        </div>
+                        <div>
+                            <span class="badge bg-secondary px-2 py-0.5 rounded-pill small" style="font-size:0.6rem;">QUICK GUIDE</span>
+                            <h5 class="fw-bold text-dark mb-0 mt-1">REST API Cheat Sheet</h5>
+                        </div>
+                    </div>
+                    <p class="text-muted small mb-4">A high-density syntax guide mapping out status code indices, fetch loops, and parameter filtering methods.</p>
+                    <div class="mt-auto d-flex align-items-center justify-content-between pt-3 border-top border-light">
+                        <small class="text-muted fw-medium">Size: 1.1 MB</small>
+                        <a href="#" class="btn btn-outline-primary btn-sm px-3 rounded-2 download-handler">
+                            <i class="fa-solid fa-download me-1.5 small"></i> Get Guide
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white py-4 border-top border-secondary">
+        <div class="container text-center">
+            <p class="small mb-0">&copy; 2026 AcademiaX Systems. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.querySelectorAll('.download-handler').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Initializing secure resource stream transfer out of AWS S3 clusters...');
+            });
+        });
+    </script>
+</body>
+</html>

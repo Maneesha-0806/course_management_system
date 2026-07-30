@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - AcademiaX</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/student.css">
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="student-dashboard.html">
+                <span class="fw-bold tracking-wide">AcademiaX</span>
+                <span class="badge bg-primary ms-2 Regal-tag small" style="font-size: 0.65rem;">STUDENT</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dashboardNav" aria-controls="dashboardNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="dashboardNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="student-dashboard.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="browse-courses.html">Browse Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="my-courses.html">My Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="progress.html">Detailed Progress</a>
+                    </li>
+                </ul>
+                
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item me-lg-3 position-relative">
+                        <a class="nav-link p-2" href="notifications.html" title="View Alerts">
+                            <i class="fa-solid fa-bell fa-lg text-light"></i>
+                            <span class="position-absolute top-1 start-75 translate-middle badge rounded-pill bg-danger" style="font-size: 0.55rem;">
+                                3
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center text-white" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="avatar bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px; font-weight: 600; font-size: 0.85rem;">
+                                JD
+                            </div>
+                            <span class="d-none d-sm-inline" id="navStudentName">John Doe</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" aria-labelledby="profileDropdown">
+                            <li><a class="dropdown-menu-item dropdown-item py-2 small" href="progress.html"><i class="fa-solid fa-id-card me-2 text-muted"></i> My Analytics</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-menu-item dropdown-item py-2 small text-danger" href="../index.html" id="logoutBtn"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i> Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-4 py-lg-5">
+        
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="bg-white rounded-4 p-4 shadow-sm border-0 d-md-flex justify-content-between align-items-center">
+                    <div>
+                        <h2 class="fw-bold mb-1">Welcome back, <span class="text-primary text-gradient">John</span>! 👋</h2>
+                        <p class="text-muted mb-0">Department: <span class="fw-medium text-dark" id="studentDeptText">Computer Science</span></p>
+                    </div>
+                    <div class="mt-3 mt-md-0">
+                        <a href="browse-courses.html" class="btn btn-primary px-4 py-2 rounded-3 shadow-sm">
+                            <i class="fa-solid fa-magnifying-glass me-2"></i> Explore New Courses
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card border-0 shadow-sm rounded-3 p-3 h-100 bg-white">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <span class="text-muted small text-uppercase fw-semibold tracking-wider">Total Enrolled</span>
+                            <h3 class="fw-bold text-dark mt-1 mb-0" id="statEnrolled">3</h3>
+                        </div>
+                        <div class="bg-primary bg-opacity-10 text-primary rounded-3 p-3">
+                            <i class="fa-solid fa-book-bookmark fa-xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card border-0 shadow-sm rounded-3 p-3 h-100 bg-white">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <span class="text-muted small text-uppercase fw-semibold tracking-wider">Ongoing Tracks</span>
+                            <h3 class="fw-bold text-warning mt-1 mb-0" id="statOngoing">2</h3>
+                        </div>
+                        <div class="bg-warning bg-opacity-10 text-warning rounded-3 p-3">
+                            <i class="fa-solid fa-spinner fa-spin fa-xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card border-0 shadow-sm rounded-3 p-3 h-100 bg-white">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <span class="text-muted small text-uppercase fw-semibold tracking-wider">Completed Tracks</span>
+                            <h3 class="fw-bold text-success mt-1 mb-0" id="statCompleted">1</h3>
+                        </div>
+                        <div class="bg-success bg-opacity-10 text-success rounded-3 p-3">
+                            <i class="fa-solid fa-circle-check fa-xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card border-0 shadow-sm rounded-3 p-3 h-100 bg-white">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <span class="text-muted small text-uppercase fw-semibold tracking-wider">Certificates</span>
+                            <h3 class="fw-bold text-info mt-1 mb-0" id="statCertificates">1</h3>
+                        </div>
+                        <div class="bg-info bg-opacity-10 text-info rounded-3 p-3">
+                            <i class="fa-solid fa-award fa-xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            
+            <div class="col-12 col-lg-8">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h4 class="fw-bold mb-0">Your Active Enrolled Courses</h4>
+                    <a href="my-courses.html" class="text-primary text-decoration-none small fw-semibold">View All</a>
+                </div>
+
+                <div class="row g-4" id="coursesGridContainer">
+                    
+                    <div class="col-12">
+                        <div class="card border-0 shadow-sm rounded-4 p-3 bg-white hover-card transition-all">
+                            <div class="row align-items-center g-3">
+                                <div class="col-md-8">
+                                    <span class="badge bg-info bg-opacity-10 text-info mb-2 px-2.5 py-1 rounded-pill small font-semibold" style="font-size:0.75rem;">Programming</span>
+                                    <h5 class="fw-bold text-dark mb-1">Advanced Python Programming Core</h5>
+                                    <p class="text-muted mb-0 small">Instructor: <span class="fw-medium text-secondary">Dr. Alan Turing</span></p>
+                                </div>
+                                <div class="col-md-4 text-md-end">
+                                    <div class="mb-2 d-flex justify-content-between align-items-center d-md-block">
+                                        <span class="text-muted small d-md-none">Progress:</span>
+                                        <span class="fw-bold text-primary h5 mb-0">80%</span>
+                                    </div>
+                                    <div class="progress mb-3" style="height: 6px;">
+                                        <div class="progress-bar bg-primary rounded" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <a href="course-content.html?id=py101" class="btn btn-outline-primary btn-sm w-100 rounded-3 py-1.5">Continue Learning <i class="fa-solid fa-chevron-right ms-1 small"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="card border-0 shadow-sm rounded-4 p-3 bg-white hover-card transition-all">
+                            <div class="row align-items-center g-3">
+                                <div class="col-md-8">
+                                    <span class="badge bg-primary bg-opacity-10 text-primary mb-2 px-2.5 py-1 rounded-pill small font-semibold" style="font-size:0.75rem;">Web Development</span>
+                                    <h5 class="fw-bold text-dark mb-1">Modern Frontend Engineering with React.js</h5>
+                                    <p class="text-muted mb-0 small">Instructor: <span class="fw-medium text-secondary">Prof. Sarah Connor</span></p>
+                                </div>
+                                <div class="col-md-4 text-md-end">
+                                    <div class="mb-2 d-flex justify-content-between align-items-center d-md-block">
+                                        <span class="text-muted small d-md-none">Progress:</span>
+                                        <span class="fw-bold text-warning h5 mb-0">60%</span>
+                                    </div>
+                                    <div class="progress mb-3" style="height: 6px;">
+                                        <div class="progress-bar bg-warning rounded" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <a href="course-content.html?id=react202" class="btn btn-outline-primary btn-sm w-100 rounded-3 py-1.5">Continue Learning <i class="fa-solid fa-chevron-right ms-1 small"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="card border-0 shadow-sm rounded-4 p-3 bg-white bg-opacity-70 opacity-90 transition-all">
+                            <div class="row align-items-center g-3">
+                                <div class="col-md-8">
+                                    <span class="badge bg-success bg-opacity-10 text-success mb-2 px-2.5 py-1 rounded-pill small font-semibold" style="font-size:0.75rem;">DBMS</span>
+                                    <h5 class="fw-bold text-secondary mb-1 text-decoration-line-through">Relational Database Systems Architecture (DBMS)</h5>
+                                    <p class="text-muted mb-0 small">Instructor: <span class="fw-medium text-secondary">Dr. Grace Hopper</span></p>
+                                </div>
+                                <div class="col-md-4 text-md-end">
+                                    <div class="mb-2 d-flex justify-content-between align-items-center d-md-block">
+                                        <span class="text-muted small d-md-none">Status:</span>
+                                        <span class="fw-bold text-success h5 mb-0"><i class="fa-solid fa-circle-check me-1"></i> 100%</span>
+                                    </div>
+                                    <div class="progress mb-3" style="height: 6px;">
+                                        <div class="progress-bar bg-success rounded" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <a href="certificate.html?course=dbms303" class="btn btn-success btn-sm w-100 rounded-3 py-1.5"><i class="fa-solid fa-download me-1.5"></i> Get Certificate</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4">
+                <h4 class="fw-bold mb-4">Platform Notifications</h4>
+                
+                <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+                    <div class="timeline-container">
+                        
+                        <div class="d-flex mb-4 position-relative border-start border-2 border-primary ps-3 pb-2">
+                            <div class="position-absolute bg-primary rounded-circle" style="width:10px; height:10px; left:-6px; top:6px;"></div>
+                            <div>
+                                <span class="text-muted small d-block">Just Now</span>
+                                <h6 class="fw-bold text-dark mb-1">New Module Added!</h6>
+                                <p class="text-muted small mb-0">"React Hooks Deployment Pipelines" was added to your frontend track by the faculty instructor.</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex mb-4 position-relative border-start border-2 border-warning ps-3 pb-2">
+                            <div class="position-absolute bg-warning rounded-circle" style="width:10px; height:10px; left:-6px; top:6px;"></div>
+                            <div>
+                                <span class="text-muted small d-block">2 Hours Ago</span>
+                                <h6 class="fw-bold text-dark mb-1">System Notice: Real-Time Websockets Enabled</h5>
+                                <p class="text-muted small mb-0">Socket.IO real-time notification listener handshake initialized successfully.</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex position-relative border-start border-2 border-transparent ps-3">
+                            <div class="position-absolute bg-secondary rounded-circle" style="width:10px; height:10px; left:-6px; top:6px;"></div>
+                            <div>
+                                <span class="text-muted small d-block">Yesterday</span>
+                                <h6 class="fw-bold text-muted mb-1">Enrollment Complete</h6>
+                                <p class="text-muted small mb-0">Confirmation generated securely for Database Systems Architecture.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <hr class="my-3 text-muted">
+                    <a href="notifications.html" class="btn btn-light btn-sm w-100 rounded-3 py-2 text-primary fw-medium">Open Notification Center</a>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="bg-dark text-white py-4 mt-5 border-top border-secondary">
+        <div class="container text-center">
+            <p class="text-muted small mb-0">&copy; 2026 AcademiaX Systems Dashboard. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="../js/student.js"></script>
+    <script src="../js/app.js"></script>
+    <script>
+        document.getElementById('logoutBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.clear(); // Clear cached user sessions
+            window.location.href = '../index.html';
+        });
+    </script>
+</body>
+</html>

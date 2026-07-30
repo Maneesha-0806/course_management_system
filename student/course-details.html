@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details - AcademiaX</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/student.css">
+    <link rel="stylesheet" href="../css/courses.css">
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="student-dashboard.html">
+                <span class="fw-bold tracking-wide">AcademiaX</span>
+                <span class="badge bg-primary ms-2 Regal-tag small" style="font-size: 0.65rem;">STUDENT</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#detailsNav" aria-controls="detailsNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="detailsNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link" href="student-dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="browse-courses.html">Browse Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="my-courses.html">My Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="progress.html">Detailed Progress</a></li>
+                </ul>
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center text-white" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="avatar bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px; font-weight: 600; font-size: 0.85rem;">JD</div>
+                            <span class="d-none d-sm-inline">John Doe</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" aria-labelledby="profileDropdown">
+                            <li><a class="dropdown-item py-2 small text-danger" href="#" id="logoutBtn"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i> Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-5">
+        
+        <div class="mb-4">
+            <a href="browse-courses.html" class="text-decoration-none text-muted small back-link">
+                <i class="fa-solid fa-chevron-left me-1.5 small"></i> Back to Course Catalog
+            </a>
+        </div>
+
+        <div class="row g-4">
+            
+            <div class="col-12 col-lg-8">
+                <div class="bg-white rounded-4 p-4 p-sm-5 shadow-sm border-0 mb-4">
+                    <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-1.5 rounded-pill small fw-semibold text-uppercase tracking-wider mb-3" style="font-size: 0.75rem;" id="courseCategoryTag">Web Development</span>
+                    <h1 class="fw-bold text-dark mb-3" id="courseTitleHeader">Full Stack Development Architecture</h1>
+                    
+                    <p class="lead text-muted mb-4" id="courseMainDescription">Master modern end-to-end web paradigms. This structured operational track takes you completely from base browser interface layout concepts up to deployed scalable cloud cluster data storage systems.</p>
+                    
+                    <div class="row g-3 text-secondary border-top border-light pt-4 mt-2">
+                        <div class="col-6 col-sm-4">
+                            <div class="small text-muted">Lead Instructor</div>
+                            <div class="fw-bold text-dark mt-0.5" id="courseInstructor"><i class="fa-solid fa-user-tie text-primary me-2"></i>Prof. Sarah Connor</div>
+                        </div>
+                        <div class="col-6 col-sm-4">
+                            <div class="small text-muted">Estimated Duration</div>
+                            <div class="fw-bold text-dark mt-0.5" id="courseDuration"><i class="fa-solid fa-clock text-warning me-2"></i>12 Weeks Complete</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 class="fw-bold text-dark mb-3">Syllabus Curriculum Modules</h4>
+                <div class="card border-0 shadow-sm rounded-4 p-4 bg-white mb-4">
+                    <p class="text-muted small mb-4">Modules must be unlocked and completed in sequential order to fulfill target tracking criteria logs:</p>
+                    
+                    <div class="list-group curriculum-list" id="syllabusModuleList">
+                        <div class="list-group-item border-0 p-3 d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <span class="badge bg-secondary rounded-circle p-2.5 me-3 text-center d-flex align-items-center justify-content-center" style="width:34px; height:34px;">1</span>
+                                <span class="fw-bold text-dark">HTML Structure Essentials</span>
+                            </div>
+                            <i class="fa-solid fa-circle-play text-muted"></i>
+                        </div>
+                        <div class="list-group-item border-0 p-3 d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <span class="badge bg-secondary rounded-circle p-2.5 me-3 text-center d-flex align-items-center justify-content-center" style="width:34px; height:34px;">2</span>
+                                <span class="fw-bold text-dark">CSS Grid & Flexbox Styling</span>
+                            </div>
+                            <i class="fa-solid fa-circle-play text-muted"></i>
+                        </div>
+                        <div class="list-group-item border-0 p-3 d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <span class="badge bg-secondary rounded-circle p-2.5 me-3 text-center d-flex align-items-center justify-content-center" style="width:34px; height:34px;">3</span>
+                                <span class="fw-bold text-dark">JavaScript Async Core Engines</span>
+                            </div>
+                            <i class="fa-solid fa-circle-play text-muted"></i>
+                        </div>
+                        <div class="list-group-item border-0 p-3 d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <span class="badge bg-secondary rounded-circle p-2.5 me-3 text-center d-flex align-items-center justify-content-center" style="width:34px; height:34px;">4</span>
+                                <span class="fw-bold text-dark">React SPA Component Tree Structuring</span>
+                            </div>
+                            <i class="fa-solid fa-circle-play text-muted"></i>
+                        </div>
+                        <div class="list-group-item border-0 p-3 d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <span class="badge bg-secondary rounded-circle p-2.5 me-3 text-center d-flex align-items-center justify-content-center" style="width:34px; height:34px;">5</span>
+                                <span class="fw-bold text-dark">Node.js Rest API Cluster Frameworks</span>
+                            </div>
+                            <i class="fa-solid fa-circle-play text-muted"></i>
+                        </div>
+                        <div class="list-group-item border-0 p-3 d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <span class="badge bg-secondary rounded-circle p-2.5 me-3 text-center d-flex align-items-center justify-content-center" style="width:34px; height:34px;">6</span>
+                                <span class="fw-bold text-dark">MongoDB NoSQL Schema Collections</span>
+                            </div>
+                            <i class="fa-solid fa-circle-play text-muted"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden course-meta-sidebar bg-white">
+                    <div class="p-4 bg-dark text-white text-center py-5">
+                        <i class="fa-solid fa-graduation-cap fa-4x text-primary opacity-75 mb-3"></i>
+                        <h5 class="fw-bold mb-0">Academic Status</h5>
+                        <small class="text-muted">Not Enrolled Yet</small>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-muted small text-center mb-4">Enrollment grants instant, permanent access to live modules, streaming lecture videos, downloadable assets, and automated completion verification workflows.</p>
+                        
+                        <button id="enrollActionButton" class="btn btn-primary btn-lg w-100 rounded-3 shadow-sm py-2.5 small fw-bold">
+                            <span class="spinner-border spinner-border-sm d-none me-2" role="status" aria-hidden="true" id="enrollSpinner"></span>
+                            Enroll in Course Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white py-4 border-top border-secondary">
+        <div class="container text-center">
+            <p class="text-muted small mb-0">&copy; 2026 AcademiaX Systems. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Logout execution 
+        document.getElementById('logoutBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.clear();
+            window.location.href = '../index.html';
+        });
+
+        // Simple runtime validation mockup simulation to route toward success page upon button click
+        document.getElementById('enrollActionButton').addEventListener('click', function() {
+            const btn = this;
+            const spinner = document.getElementById('enrollSpinner');
+            
+            // Trigger visual processing states
+            btn.disabled = true;
+            spinner.classList.remove('d-none');
+            
+            setTimeout(() => {
+                // Route to your specified module template route structure file
+                window.location.href = 'enrollment-success.html';
+            }, 1200);
+        });
+    </script>
+</body>
+</html>

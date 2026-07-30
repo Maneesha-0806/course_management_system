@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modify Course Syllabus - Faculty Deck</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+
+    <script>
+        (function() {
+            const token = localStorage.getItem('token');
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            
+            // Block unauthenticated tracking paths
+            if (!token || user.role !== 'admin') {
+                alert('Access Denied: Faculty Clearance Required.');
+                window.location.href = '../login.html';
+            }
+        })();
+    </script>
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="admin-dashboard.html">
+                <span class="fw-bold tracking-wide">AcademiaX</span>
+                <span class="badge bg-danger ms-2 Regal-tag small" style="font-size: 0.65rem;">EDITOR</span>
+            </a>
+            <div class="ms-auto">
+                <a href="courses.html" class="btn btn-outline-light btn-sm rounded-2">
+                    <i class="fa-solid fa-arrow-left me-1.5 small"></i> Return to Catalog
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-9 col-xl-8">
+                
+                <div class="alert alert-info border-0 shadow-sm rounded-3 d-flex align-items-center mb-4 p-3" role="alert">
+                    <i class="fa-solid fa-sliders fa-lg me-3 text-info"></i>
+                    <div class="small">
+                        Modifying Context Target Parameter: <strong class="font-monospace text-uppercase" id="targetIdBreadcrumb">LOADING...</strong>. Changes publish instantly to all active student classroom layouts.
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white">
+                    <div class="border-bottom pb-3 mb-4">
+                        <h3 class="fw-bold text-dark mb-1">Edit Course Profiles</h3>
+                        <p class="text-muted mb-0">Modify department mappings, rewrite foundational summary text blocks, or maintain your chronological syllabus roadmap modules.</p>
+                    </div>
+
+                    <form id="masterEditCourseForm" novalidate>
+                        
+                        <div class="row g-3 mb-4">
+                            <div class="col-sm-4">
+                                <label class="form-label small fw-semibold text-muted">Course Code ID Key</label>
+                                <input type="text" id="editCourseCode" class="form-control bg-light font-monospace fw-bold text-muted text-uppercase" readonly>
+                            </div>
+                            <div class="col-sm-8">
+                                <label for="editCourseName" class="form-label small fw-semibold text-muted">Course Curriculum Title</label>
+                                <input type="text" id="editCourseName" class="form-control bg-light" required>
+                                <div class="invalid-feedback">Title field cannot sit empty.</div>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col-sm-6">
+                                <label for="editCourseCategory" class="form-label small fw-semibold text-muted">Department Domain Category</label>
+                                <select id="editCourseCategory" class="form-select bg-light" required>
+                                    <option value="Web Development">Web Development</option>
+                                    <option value="Programming">Programming</option>
+                                    <option value="Artificial Intelligence">Artificial Intelligence</option>
+                                    <option value="DBMS">DBMS</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-label small fw-semibold text-muted">Assigned Faculty Instructor</label>
+                                <input type="text" id="editCourseInstructor" class="form-control bg-light text-muted" readonly>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="editCourseDesc" class="form-label small fw-semibold text-muted">Course Core Summary Narrative Description</label>
+                            <textarea id="editCourseDesc" class="form-control bg-light" rows="4" required></textarea>
+                            <div class="invalid-feedback">Provide descriptive summaries.</div>
+                        </div>
+
+                        <div class="bg-light rounded-4 p-4 mb-4 border border-light">
+                            <h5 class="fw-bold text-dark mb-1"><i class="fa-solid fa-list-ol text-primary me-2 small"></i>Syllabus Curriculum Modules Roadmap</h5>
+                            <p class="text-muted small mb-3">Append or remove modules below. Changes map synchronously across student workspaces.</p>
+                            
+                            <div id="editModulesGroup" class="d-grid gap-2 mb-3">
+                                </div>
+
+                            <button type="button" id="editAppendRowBtn" class="btn btn-sm btn-outline-dark rounded-2">
+                                <i class="fa-solid fa-plus me-1 small"></i> Append Roadmap Module Row
+                            </button>
+                        </div>
+
+                        <hr class="my-4 text-muted opacity-20">
+                        <div class="d-flex justify-content-end gap-2">
+                            <a href="courses.html" class="btn btn-light px-4 py-2.5 rounded-3 border small font-semibold">Discard Unsaved Track Changes</a>
+                            <button type="submit" class="btn btn-danger px-4 py-2.5 rounded-3 shadow-sm font-semibold small">
+                                <i class="fa-solid fa-cloud-arrow-up me-2"></i>Apply & Push Updates
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white py-4 border-top border-secondary">
+        <div class="container text-center">
+            <p class="text-muted small mb-0">&copy; 2026 AcademiaX Operations Command Core. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        const modulesGroup = document.getElementById('editModulesGroup');
+        const appendRowBtn = document.getElementById('editAppendRowBtn');
+        const mainForm = document.getElementById('masterEditCourseForm');
+
+        // Mock Database Object for offline testing/visualization preview support
+        const mockDatabaseCatalog = {
+            "fs202": {
+                code: "FS202",
+                name: "Full Stack Development Architecture",
+                category: "Web Development",
+                instructor: "Prof. Sarah Connor",
+                desc: "Master modern end-to-end paradigms covering HTML, CSS, JavaScript, React, Node.js, and MongoDB datasets.",
+                modules: ["HTML Structure & Semantics Essentials", "CSS Grid & Flexbox Engines", "JavaScript Asynchronous Core Engines"]
+            },
+            "py101": {
+                code: "PY101",
+                name: "Advanced Python Programming Core",
+                category: "Programming",
+                instructor: "Dr. Alan Turing",
+                desc: "Deep dive into data algorithms, structural patterns, and backend runtime script designs.",
+                modules: ["Syntax Foundations & Context", "OOP Paradigms", "Advanced Architectural Patterns"]
+            }
+        };
+
+        // Parse query parameter contexts out of address string
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            // Default back down to standard track code if parameters aren't supplied in development
+            const currentId = (urlParams.get('id') || 'fs202').toLowerCase();
+
+            document.getElementById('targetIdBreadcrumb').innerText = currentId;
+            
+            const targetData = mockDatabaseCatalog[currentId];
+            if (targetData) {
+                // Populate individual form fields with database parameters
+                document.getElementById('editCourseCode').value = targetData.code;
+                document.getElementById('editCourseName').value = targetData.name;
+                document.getElementById('editCourseCategory').value = targetData.category;
+                document.getElementById('editCourseInstructor').value = targetData.instructor;
+                document.getElementById('editCourseDesc').value = targetData.desc;
+
+                // Loop through array elements to inject active curriculum list elements rows
+                targetData.modules.forEach(moduleTitle => injectModuleRow(moduleTitle));
+            }
+        });
+
+        // Functional helper module to construct rows inside group containers
+        function injectModuleRow(initialValue = "") {
+            const currentRowsCount = document.querySelectorAll('.dynamic-module-edit-row').length;
+            const standardizedNum = String(currentRowsCount + 1).padStart(2, '0');
+
+            const rowNode = document.createElement('div');
+            rowNode.className = 'input-group dynamic-module-edit-row';
+            rowNode.innerHTML = `
+                <span class="input-group-text bg-white small font-monospace fw-bold text-secondary">${standardizedNum}</span>
+                <input type="text" class="form-control bg-white edit-module-title-value" value="${initialValue}" placeholder="Enter specific chronological module criteria name..." required>
+                <button class="btn btn-outline-danger" type="button" onclick="this.closest('.dynamic-module-edit-row').remove(); realignRowNumbers();"><i class="fa-solid fa-trash-can"></i></button>
+            `;
+            modulesGroup.appendChild(rowNode);
+        }
+
+        // Action trigger hook to attach blank lines 
+        appendRowBtn.addEventListener('click', () => injectModuleRow(""));
+
+        // Loop array and realign numerical indices tags cleanly after structural line removal
+        function realignRowNumbers() {
+            document.querySelectorAll('.dynamic-module-edit-row').forEach((row, index) => {
+                const calculatedNum = String(index + 1).padStart(2, '0');
+                row.querySelector('.input-group-text').innerText = calculatedNum;
+            });
+        }
+
+        // Form processing validation loop pipelines
+        mainForm.addEventListener('submit', function(e) {
+            if (!mainForm.checkValidity()) {
+                e.preventDefault();
+                e.stopPropagation();
+            } else {
+                e.preventDefault();
+                
+                const modulesPayload = [];
+                document.querySelectorAll('.edit-module-title-value').forEach(input => {
+                    modulesPayload.push(input.value.trim());
+                });
+
+                alert(`Success! Updated record configuration committed. Saved compilation array containing ${modulesPayload.length} valid active modules schemas.`);
+                window.location.href = 'courses.html';
+            }
+            mainForm.classList.add('was-validated');
+        });
+    </script>
+</body>
+</html>

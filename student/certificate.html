@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Verification Certificate - AcademiaX</title>
+    
+    <!-- Bootstrap 5.3.2 CSS CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- Custom CSS Stylesheets -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/student.css">
+    
+    <style>
+        /* Certificate Document Frame Styles */
+        .certificate-border-frame {
+            border: 8px double var(--secondary-color);
+            padding: 3rem;
+            position: relative;
+            background-color: #ffffff;
+            background-image: radial-gradient(circle, #fcfcfc 0%, #fdfdfd 100%);
+        }
+        
+        .certificate-seal {
+            width: 100px;
+            height: 100px;
+            opacity: 0.85;
+            user-select: none;
+        }
+
+        .text-serif {
+            font-family: 'Georgia', serif;
+        }
+
+        /* Print Media Target Formats Override */
+        @media print {
+            body {
+                background: none !important;
+                color: #000000 !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .card {
+                box-shadow: none !important;
+                border: none !important;
+            }
+            .certificate-border-frame {
+                border: 8px double #1e293b !important;
+                padding: 1.5rem !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-light py-5">
+
+    <!-- Action Toolbar (Hidden when printing out document layers) -->
+    <div class="container mb-4 no-print">
+        <div class="d-flex justify-content-between align-items-center bg-white p-3 rounded-3 shadow-sm">
+            <a href="my-courses.html" class="btn btn-outline-secondary btn-sm rounded-2">
+                <i class="fa-solid fa-arrow-left me-1.5 small"></i> Back to Classroom
+            </a>
+            <button onclick="window.print();" class="btn btn-success btn-sm rounded-2 px-3">
+                <i class="fa-solid fa-print me-1.5 small"></i> Print / Save as PDF
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Certificate Presentation Layout Area -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-xl-10">
+                
+                <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                    <div class="card-body p-2 p-sm-4 bg-white">
+                        
+                        <!-- Outer Decorative Frame Line -->
+                        <div class="certificate-border-frame text-center">
+                            
+                            <!-- Platform Institutional Branding Header -->
+                            <div class="mb-4">
+                                <h2 class="fw-bold tracking-wide text-dark mb-0">AcademiaX Systems</h2>
+                                <span class="text-uppercase small tracking-widest text-muted fw-bold" style="font-size:0.65rem;">Institutional Verification Gateway</span>
+                            </div>
+                            
+                            <hr class="w-25 mx-auto text-muted opacity-20 my-4">
+
+                            <!-- Core Accomplishment Statement Text -->
+                            <p class="text-serif text-muted fst-italic fs-5 mb-2">This official document proudly verifies that</p>
+                            <h1 class="fw-bold text-primary display-5 text-serif text-gradient my-3" id="certStudentName">John Doe</h1>
+                            
+                            <p class="text-serif text-muted fst-italic fs-5 mx-auto col-md-8 mb-4" style="line-height: 1.6;">
+                                has successfully finished all required technical curriculum pathways, verified laboratory module criteria, and completed evaluations for the program titled:
+                            </p>
+                            
+                            <h3 class="fw-bold text-dark mb-4 px-3" id="certCourseTitle">Relational Database Systems Architecture (DBMS)</h3>
+                            
+                            <hr class="w-50 mx-auto text-muted opacity-20 my-5">
+
+                            <!-- Signatures and Security Seals Alignment Grid -->
+                            <div class="row align-items-center justify-content-between g-4 mt-2">
+                                <div class="col-4 text-center">
+                                    <div class="border-bottom border-secondary border-opacity-20 pb-2 text-dark font-semibold text-serif fst-italic">
+                                        Dr. Grace Hopper
+                                    </div>
+                                    <span class="text-muted small d-block mt-1">Lead Program Supervisor</span>
+                                </div>
+                                
+                                <div class="col-4 text-center d-none d-md-block">
+                                    <!-- Decorative Secure Vector Icon Vector Badge -->
+                                    <i class="fa-solid fa-award fa-4xl text-warning opacity-75"></i>
+                                </div>
+                                
+                                <div class="col-4 text-center">
+                                    <div class="border-bottom border-secondary border-opacity-20 pb-2 text-dark font-semibold" id="certDateString">
+                                        July 4, 2026
+                                    </div>
+                                    <span class="text-muted small d-block mt-1">Date of Issuance</span>
+                                </div>
+                            </div>
+
+                            <!-- Verification Hashes and Cryptographic Footprint logs -->
+                            <div class="mt-5 pt-4 border-top border-light text-start text-monospace bg-light rounded p-2.5" style="font-size: 0.65rem;">
+                                <div class="row text-muted">
+                                    <div class="col-md-6"><strong>Document Hash Reference:</strong> sha256:8f2b8c9c1a3d...</div>
+                                    <div class="col-md-6 text-md-end"><strong>Status Flag:</strong> SYSTEM_VERIFIED_VALID</div>
+                                </div>
+                            </div>
+
+                        </div> <!-- /certificate-border-frame -->
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 Bundle JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Dynamic Query Parameter Parser Injection Engine Hook -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const courseCode = urlParams.get('course');
+
+            // Map standard tracking arrays to match parameter input strings
+            if (courseCode === 'py101') {
+                document.getElementById('certCourseTitle').innerText = "Advanced Python Programming Core";
+            } else if (courseCode === 'react202') {
+                document.getElementById('certCourseTitle').innerText = "Modern Frontend Engineering with React.js";
+            }
+        });
+    </script>
+</body>
+</html>

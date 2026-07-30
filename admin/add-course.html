@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Course Track - Admin Central</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm border-bottom border-primary border-3">
+        <div class="container-fluid px-lg-4">
+            <a class="navbar-brand d-flex align-items-center" href="admin-dashboard.html">
+                <span class="fw-bold tracking-wide text-uppercase">AcademiaX Central</span>
+            </a>
+            <div class="ms-auto">
+                <a href="courses.html" class="btn btn-outline-light btn-sm rounded-2">
+                    <i class="fa-solid fa-arrow-left me-1.5 small"></i> Return to Catalog Master
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-9 col-xl-8">
+                
+                <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white">
+                    <div class="border-bottom pb-3 mb-4">
+                        <h2 class="fw-bold text-dark mb-1"><i class="fa-solid fa-folder-plus text-danger me-2"></i>Provision New Course Path</h2>
+                        <p class="text-muted mb-0">Populate the structural entity schemas below to inject a clean course track object directly into the platform directory logs.</p>
+                    </div>
+
+                    <form id="masterAddCourseForm" novalidate>
+                        
+                        <div class="row g-3 mb-4">
+                            <div class="col-sm-4">
+                                <label for="courseCodeInput" class="form-label small fw-semibold text-muted">Catalog Code ID</label>
+                                <input type="text" id="courseCodeInput" class="form-control bg-light font-monospace fw-bold text-uppercase" placeholder="e.g., FS202" required>
+                                <div class="invalid-feedback">Provide a code ID context.</div>
+                            </div>
+                            <div class="col-sm-8">
+                                <label for="courseNameInput" class="form-label small fw-semibold text-muted">Course Curriculum Name Title</label>
+                                <input type="text" id="courseNameInput" class="form-control bg-light" placeholder="e.g., Full Stack Development Architecture" required>
+                                <div class="invalid-feedback">A clear track name is required.</div>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col-sm-6">
+                                <label for="courseCategorySelect" class="form-label small fw-semibold text-muted">Department Domain Category</label>
+                                <select id="courseCategorySelect" class="form-select bg-light" required>
+                                    <option value="" disabled selected>Select Domain Option...</option>
+                                    <option value="Web Development">Web Development</option>
+                                    <option value="Programming">Programming</option>
+                                    <option value="AI">Artificial Intelligence</option>
+                                    <option value="DBMS">DBMS</option>
+                                </select>
+                                <div class="invalid-feedback">Assign an institutional branch filter category.</div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="courseInstructorInput" class="form-label small fw-semibold text-muted">Lead Faculty Instructor Head</label>
+                                <input type="text" id="courseInstructorInput" class="form-control bg-light" placeholder="e.g., Prof. Sarah Connor" required>
+                                <div class="invalid-feedback">Specify a tracking supervisor instructor.</div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="courseDescInput" class="form-label small fw-semibold text-muted">Course Core Narrative Description</label>
+                            <textarea id="courseDescInput" class="form-control bg-light" rows="4" placeholder="Summarize syllabus parameters, framework target metrics, and structural expectations..." required></textarea>
+                            <div class="invalid-feedback">Provide a narrative metadata summary text block.</div>
+                        </div>
+
+                        <div class="bg-light rounded-4 p-4 mb-4 border">
+                            <h5 class="fw-bold text-dark mb-1"><i class="fa-solid fa-list-ol text-muted me-2 small"></i>Syllabus Curriculum Modules Roadmap</h5>
+                            <p class="text-muted small mb-3">Pre-populate required module parameters array indices below before launching initialization:</p>
+                            
+                            <div id="dynamicModulesGroup" class="d-grid gap-2 mb-3">
+                                <div class="input-group dynamic-module-input-row">
+                                    <span class="input-group-text bg-white small font-monospace fw-bold text-secondary">01</span>
+                                    <input type="text" class="form-control bg-white module-title-value" placeholder="e.g., HTML Structure & Semantics Essentials" required>
+                                </div>
+                            </div>
+
+                            <button type="button" id="addNewModuleRowBtn" class="btn btn-sm btn-outline-dark rounded-2">
+                                <i class="fa-solid fa-plus me-1 small"></i> Append Roadmap Module Row
+                            </button>
+                        </div>
+
+                        <hr class="my-4 text-muted opacity-20">
+                        <div class="d-flex justify-content-end gap-2">
+                            <a href="courses.html" class="btn btn-light px-4 py-2.5 rounded-3 border small font-semibold">Cancel & Reset</a>
+                            <button type="submit" class="btn btn-danger px-4 py-2.5 rounded-3 shadow-sm font-semibold small">
+                                <i class="fa-solid fa-cloud-arrow-up me-2"></i>Commit & Publish Track
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white py-4 border-top border-secondary">
+        <div class="container-fluid text-center">
+            <p class="text-muted small mb-0">&copy; 2026 AcademiaX Operations Command Core. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        const modulesGroup = document.getElementById('dynamicModulesGroup');
+        const appendRowBtn = document.getElementById('addNewModuleRowBtn');
+        const masterForm = document.getElementById('masterAddCourseForm');
+
+        // Append a fresh custom row object with proper numeric increment indices
+        appendRowBtn.addEventListener('click', () => {
+            const currentRowsCount = document.querySelectorAll('.dynamic-module-input-row').length;
+            const newIndex = String(currentRowsCount + 1).padStart(2, '0');
+
+            const rowNodeTemplate = document.createElement('div');
+            rowNodeTemplate.className = 'input-group dynamic-module-input-row';
+            rowNodeTemplate.innerHTML = `
+                <span class="input-group-text bg-white small font-monospace fw-bold text-secondary">${newIndex}</span>
+                <input type="text" class="form-control bg-white module-title-value" placeholder="Enter next chronological curriculum lesson block..." required>
+                <button class="btn btn-outline-danger" type="button" onclick="this.closest('.dynamic-module-input-row').remove(); recalculateRowIndices();"><i class="fa-solid fa-trash-can"></i></button>
+            `;
+            modulesGroup.appendChild(rowNodeTemplate);
+        });
+
+        // Loop array and realign sequence indices after removal operations
+        function recalculateRowIndices() {
+            document.querySelectorAll('.dynamic-module-input-row').forEach((row, idx) => {
+                const standardizedNum = String(idx + 1).padStart(2, '0');
+                row.querySelector('.input-group-text').innerText = standardizedNum;
+            });
+        }
+
+        // Form pipeline compliance validation handler
+        masterForm.addEventListener('submit', function(event) {
+            if (!masterForm.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            } else {
+                event.preventDefault();
+                
+                // Read input fields for array assembly illustration
+                const modulesArrayPayload = [];
+                document.querySelectorAll('.module-title-value').forEach(input => {
+                    modulesArrayPayload.push(input.value.trim());
+                });
+
+                alert(`Success! Generated record configuration mapping containing ${modulesArrayPayload.length} modules array. Saving object straight into live database clusters...`);
+                window.location.href = 'courses.html';
+            }
+            masterForm.classList.add('was-validated');
+        });
+    </script>
+</body>
+</html>

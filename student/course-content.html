@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Content Hub - AcademiaX</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/student.css">
+    <link rel="stylesheet" href="../css/learning.css">
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+        <div class="container-fluid px-lg-4">
+            <a class="navbar-brand d-flex align-items-center" href="student-dashboard.html">
+                <span class="fw-bold tracking-wide">AcademiaX</span>
+                <span class="badge bg-primary ms-2 Regal-tag small" style="font-size: 0.65rem;">CLASSROOM</span>
+            </a>
+            <div class="ms-auto d-flex align-items-center">
+                <a href="my-courses.html" class="btn btn-outline-light btn-sm rounded-2">
+                    <i class="fa-solid fa-arrow-left me-1.5 small"></i> Exit Classroom
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        
+        <div class="card border-0 shadow-sm rounded-4 p-4 bg-white mb-5">
+            <div class="d-md-flex justify-content-between align-items-center">
+                <div>
+                    <span class="badge bg-primary bg-opacity-10 text-primary px-2.5 py-1 rounded-pill small fw-bold text-uppercase mb-2" style="font-size:0.7rem;">Engineering Track</span>
+                    <h2 class="fw-bold text-dark mb-1">Full Stack Development Architecture</h2>
+                    <p class="text-muted mb-0">Review required milestones, access download vaults, or select an active module tracking sequence to watch lectures.</p>
+                </div>
+                <div class="mt-3 mt-md-0">
+                    <a href="materials.html?id=fs202" class="btn btn-warning px-4 py-2.5 fw-semibold rounded-3 shadow-sm text-dark">
+                        <i class="fa-solid fa-cloud-arrow-down me-2"></i>Download Resources Hub
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-top border-light">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="small text-muted fw-semibold">Course Completion Status:</span>
+                    <span class="small fw-bold text-primary">66% Complete</span>
+                </div>
+                <div class="progress" style="height: 8px;">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            
+            <div class="col-12 col-lg-8">
+                <h4 class="fw-bold text-dark mb-3"><i class="fa-solid fa-layer-group text-primary me-2"></i>Required Syllabus Modules Roadmap</h4>
+                <p class="text-muted small mb-4">Select any available module block to launch its streaming lecture video player terminal and complete tracking marks.</p>
+                
+                <div class="list-group list-group-flush gap-3" id="courseModulesRoadmap">
+                    
+                    <a href="video-player.html?id=fs202&mod=1" class="list-group-item list-group-item-action border rounded-4 p-3.5 d-flex align-items-center justify-content-between bg-white shadow-sm hover-card text-decoration-none">
+                        <div class="d-flex align-items-center">
+                            <i class="fa-solid fa-circle-check text-success fa-2x me-3.5"></i>
+                            <div>
+                                <span class="d-block small text-muted text-uppercase fw-bold" style="font-size:0.6rem;">Module 01</span>
+                                <h5 class="text-dark mb-0 mt-0.5">HTML Structure & Semantics Essentials</h5>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-circle-play text-muted fa-lg"></i>
+                    </a>
+
+                    <a href="video-player.html?id=fs202&mod=2" class="list-group-item list-group-item-action border rounded-4 p-3.5 d-flex align-items-center justify-content-between bg-white shadow-sm hover-card text-decoration-none">
+                        <div class="d-flex align-items-center">
+                            <i class="fa-solid fa-circle-check text-success fa-2x me-3.5"></i>
+                            <div>
+                                <span class="d-block small text-muted text-uppercase fw-bold" style="font-size:0.6rem;">Module 02</span>
+                                <h5 class="text-dark mb-0 mt-0.5">CSS Grid, Flexbox & Fluid Custom Layouts</h5>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-circle-play text-muted fa-lg"></i>
+                    </a>
+
+                    <a href="video-player.html?id=fs202&mod=3" class="list-group-item list-group-item-action border border-primary rounded-4 p-3.5 d-flex align-items-center justify-content-between bg-white shadow-sm hover-card text-decoration-none" style="background-color: #f8fafc !important;">
+                        <div class="d-flex align-items-center">
+                            <i class="fa-solid fa-circle-play text-primary fa-2x me-3.5 animate-pulse"></i>
+                            <div>
+                                <span class="d-block small text-primary text-uppercase fw-bold" style="font-size:0.6rem;">Module 03 (Current Lesson)</span>
+                                <h5 class="text-dark mb-0 mt-0.5">JavaScript Asynchronous Engines & REST Core</h5>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-primary"></i>
+                    </a>
+
+                    <a href="video-player.html?id=fs202&mod=4" class="list-group-item list-group-item-action border rounded-4 p-3.5 d-flex align-items-center justify-content-between bg-white shadow-sm hover-card text-decoration-none opacity-75">
+                        <div class="d-flex align-items-center">
+                            <i class="fa-solid fa-lock text-muted fa-2x me-3.5 ms-1"></i>
+                            <div>
+                                <span class="d-block small text-muted text-uppercase fw-bold" style="font-size:0.6rem;">Module 04</span>
+                                <h5 class="text-muted mb-0 mt-0.5">React Component Tree SPA Architecture</h5>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-circle-minus text-muted fa-lg"></i>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4">
+                <h4 class="fw-bold text-dark mb-3">Course Actions</h4>
+                
+                <div class="card border-0 shadow-sm rounded-4 p-4 bg-white text-center">
+                    <div class="p-3 bg-danger bg-opacity-10 text-danger rounded-circle d-inline-flex mb-3 mx-auto">
+                        <i class="fa-solid fa-file-signature fa-2x"></i>
+                    </div>
+                    <h5 class="fw-bold text-dark mb-2">Course Assignments</h5>
+                    <p class="text-muted small mb-4">View evaluation timelines, check grading parameters, and upload your production source links for approval.</p>
+                    
+                    <a href="assignments.html?id=fs202" class="btn btn-outline-danger w-100 rounded-3 fw-medium py-2 small">
+                        Open Project Assignments <i class="fa-solid fa-arrow-up-right-from-square ms-1 small"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4 border-top border-secondary mt-5">
+        <div class="container text-center">
+            <p class="text-muted small mb-0">&copy; 2026 AcademiaX Systems. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

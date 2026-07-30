@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Overview Terminal - Faculty Desk</title>
+    
+    <!-- Bootstrap 5.3.2 CSS CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- Custom CSS Stylesheets -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+
+    <!-- Faculty Session Guard Layer -->
+    <script>
+        (function() {
+            const token = localStorage.getItem('token');
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            
+            // Block unauthenticated tracking paths
+            if (!token || user.role !== 'admin') {
+                alert('Access Denied: Faculty Clearance Required.');
+                window.location.href = '../login.html';
+            }
+        })();
+    </script>
+</head>
+<body class="bg-light">
+
+    <!-- Top Faculty Navigation Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="admin-dashboard.html">
+                <span class="fw-bold tracking-wide">AcademiaX</span>
+                <span class="badge bg-danger ms-2 Regal-tag small" style="font-size: 0.65rem;">DETAILS</span>
+            </a>
+            <div class="ms-auto">
+                <a href="courses.html" class="btn btn-outline-light btn-sm rounded-2">
+                    <i class="fa-solid fa-arrow-left me-1.5 small"></i> Back to Catalog
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Workspace Container -->
+    <main class="container py-5">
+        
+        <!-- Course Title Header Card -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 bg-white mb-4">
+            <div class="d-md-flex justify-content-between align-items-start">
+                <div>
+                    <span id="detailCourseCategory" class="badge bg-primary bg-opacity-10 text-primary px-2.5 py-1 rounded-pill small fw-semibold text-uppercase tracking-wider mb-2" style="font-size:0.65rem;">Department Loading...</span>
+                    <h2 id="detailCourseName" class="fw-bold text-dark mb-1">Loading Course Title...</h2>
+                    <code id="detailCourseCode" class="text-muted small font-monospace fs-6">Catalog ID: ---</code>
+                </div>
+                <div class="mt-3 mt-md-0 d-flex gap-2">
+                    <a id="detailEditRouteBtn" href="edit-course.html" class="btn btn-outline-secondary btn-sm px-3 rounded-2 py-2">
+                        <i class="fa-solid fa-pen-to-square me-1.5 small"></i>Modify Syllabus
+                    </a>
+                    <a id="detailRosterRouteBtn" href="course-roster.html" class="btn btn-primary btn-sm px-3 rounded-2 py-2">
+                        <i class="fa-solid fa-users me-1.5 small"></i>View Roster
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- LEFT SECTION: Narrative Overview and Module Timeline -->
+            <div class="col-12 col-lg-8">
+                
+                <!-- Description Block -->
+                <div class="card border-0 shadow-sm rounded-4 p-4 bg-white mb-4">
+                    <h5 class="fw-bold text-dark mb-3"><i class="fa-solid fa-align-left text-muted me-2 small"></i>Course Narrative & Objectives</h5>
+                    <p id="detailCourseDesc" class="text-muted mb-0" style="line-height: 1.6;">
+                        Pulling course description indices out of your database schema files...
+                    </p>
+                </div>
+
+                <!-- Structured Modules Checklist Visual Blueprint -->
+                <h5 class="fw-bold text-dark mb-3"><i class="fa-solid fa-timeline text-danger me-2 small"></i>Chronological Curriculum Roadmap Modules</h5>
+                
+                <div id="detailModulesTimeline" class="list-group list-group-flush gap-3 mb-4">
+                    <!-- Dynamic syllabus rows injected via simulation framework below -->
+                </div>
+
+            </div>
+
+            <!-- RIGHT SIDEBAR: Roster Quick Stats -->
+            <div class="col-12 col-lg-4">
+                <div class="card border-0 shadow-sm rounded-4 p-4 bg-white sticky-lg-top" style="top: 85px;">
+                    <h5 class="fw-bold text-dark mb-3"><i class="fa-solid fa-chart-pie text-primary me-2 small"></i>Operational Summary</h5>
+                    
+                    <div class="d-grid gap-3">
+                        <div class="p-3 bg-light rounded-3 border border-light">
+                            <span class="text-muted small d-block uppercase tracking-wider font-monospace" style="font-size: 0.7rem;">Active Student Load</span>
+                            <h4 class="fw-bold text-dark mb-0 mt-1"><i class="fa-solid fa-user-graduate text-muted me-2 small"></i>412 Enrolled</h4>
+                        </div>
+
+                        <div class="p-3 bg-light rounded-3 border border-light">
+                            <span class="text-muted small d-block uppercase tracking-wider font-monospace" style="font-size: 0.7rem;">Evaluation State</span>
+                            <h4 class="fw-bold text-warning mb-0 mt-1"><i class="fa-solid fa-file-signature me-2 small"></i>14 Pending</h4>
+                        </div>
+                        
+                        <div class="p-3 bg-light rounded-3 border border-light">
+                            <span class="text-muted small d-block uppercase tracking-wider font-monospace" style="font-size: 0.7rem;">Assigned Faculty Head</span>
+                            <span id="detailCourseInstructor" class="fw-bold text-secondary d-block mt-1">---</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 border-top border-secondary mt-5">
+        <div class="container text-center">
+            <p class="text-muted small mb-0">&copy; 2026 AcademiaX Faculty Portal Core. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 Bundle JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Parameter Context Parser and Data Injection Script -->
+    <script>
+        // Mock Catalog Database Roster for offline visualization support
+        const mockDatabaseCatalog = {
+            "fs202": {
+                code: "FS202",
+                name: "Full Stack Development Architecture",
+                category: "Web Development",
+                instructor: "Prof. Sarah Connor",
+                desc: "Master modern end-to-end paradigms covering HTML, CSS, JavaScript, React, Node.js, and MongoDB datasets. This course targets production deployment mechanics, API structural setups, and asynchronous loop processing metrics.",
+                modules: ["HTML Structure & Semantics Essentials", "CSS Grid & Flexbox Engines", "JavaScript Asynchronous Core Engines", "React Component Tree SPA Architectures"]
+            },
+            "py101": {
+                code: "PY101",
+                name: "Advanced Python Programming Core",
+                category: "Programming",
+                instructor: "Dr. Alan Turing",
+                desc: "Deep dive into data algorithms, structural patterns, object-oriented paradigms, and backend runtime script designs using clean production models.",
+                modules: ["Syntax Foundations & Context", "OOP Paradigms & Polymorphism", "Advanced Architectural Structure Patterns", "Concurrency & Threading Realities"]
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const currentId = (urlParams.get('id') || 'fs202').toLowerCase();
+
+            // Setup dynamic hyperlinks for buttons to maintain query tracking continuity
+            document.getElementById('detailEditRouteBtn').href = `edit-course.html?id=${currentId}`;
+            document.getElementById('detailRosterRouteBtn').href = `course-roster.html?id=${currentId}`;
+
+            const targetData = mockDatabaseCatalog[currentId];
+            if (targetData) {
+                // Populate text attributes
+                document.getElementById('detailCourseCode').innerText = `Catalog ID: ${targetData.code}`;
+                document.getElementById('detailCourseName').innerText = targetData.name;
+                document.getElementById('detailCourseCategory').innerText = targetData.category;
+                document.getElementById('detailCourseInstructor').innerText = targetData.instructor;
+                document.getElementById('detailCourseDesc').innerText = targetData.desc;
+
+                // Clear layout container and inject individual timeline module cards
+                const timelineContainer = document.getElementById('detailModulesTimeline');
+                timelineContainer.innerHTML = '';
+
+                targetData.modules.forEach((moduleTitle, index) => {
+                    const standardizedNum = String(index + 1).padStart(2, '0');
+                    const rowNode = document.createElement('div');
+                    rowNode.className = 'list-group-item border rounded-4 p-3 bg-white shadow-sm d-flex align-items-center';
+                    rowNode.innerHTML = `
+                        <div class="bg-light text-secondary rounded-3 px-3 py-2 border font-monospace fw-bold me-3">
+                            ${standardizedNum}
+                        </div>
+                        <div>
+                            <h6 class="fw-bold text-dark mb-0">${moduleTitle}</h6>
+                            <small class="text-muted">Module Track Resource Block</small>
+                        </div>
+                    `;
+                    timelineContainer.appendChild(rowNode);
+                });
+            } else {
+                document.getElementById('detailCourseName').innerText = "Course Record Not Found";
+            }
+        });
+    </script>
+</body>
+</html>
